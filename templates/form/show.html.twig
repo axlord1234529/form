@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container ">
+
+        <div class="row justify-content-center d-flex align-items-center vh-100">
+
+            <div class="col-md-6 p-4 bg-light border shadow-lg rounded-4 ">
+
+                {% if is_sent %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <h4 class="alert-heading">Köszönjük szépen a kérdésedet.</h4>
+                        <hr>
+                        <p>Válaszunkkal hamarosan keresünk a megadott e-mail címen.</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %}
+
+                <h2 class="text-center mb-4 display-6">Lépj velünk kapcsolatba!</h2>
+
+                <form method="POST" >
+                    {{ form_start(contact_form) }}
+
+                    <div class="form-floating mb-3">
+                        {{ form_widget(contact_form.name, { 'attr': {'class': 'form-control','placeholder': 'Név...'} }) }}
+                        {{ form_label(contact_form.name) }}
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        {{ form_widget(contact_form.email, { 'attr': {'class': 'form-control', 'placeholder': 'email@példa.com'} }) }}
+                        {{ form_label(contact_form.email) }}
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        {{ form_widget(contact_form.message, { 'attr': {'class': 'form-control', 'placeholder': 'Kérdezz bátran', 'style': 'height: 100px'} }) }}
+                        {{ form_label(contact_form.message) }}
+                    </div>
+
+                    <div class="text-center">
+                        {{ form_widget(contact_form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                    </div>
+
+                    {{ form_end(contact_form) }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

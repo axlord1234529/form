@@ -5,21 +5,28 @@ namespace App\Entity;
 use App\Repository\ContactRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
 class Contact
 {
+    private const BLANK_MESSAGE = "Hiba! Kérjük töltsd ki az összes mezőt!";
+    private const INVALID_EMAIL_MESSAGE = "Valid e-mail címet adjon meg!";
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: self::BLANK_MESSAGE)]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Assert\NotBlank(message: self::BLANK_MESSAGE)]
+    #[Assert\Email(message: self::INVALID_EMAIL_MESSAGE)]
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[Assert\NotBlank(message: self::BLANK_MESSAGE)]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
