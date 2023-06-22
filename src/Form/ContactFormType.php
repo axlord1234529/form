@@ -17,15 +17,15 @@ class ContactFormType extends AbstractType
     {
         $builder
             ->add('name',TextType::class,[
-                'label' => 'Név:'
+                'label' => 'Név'
             ])
             ->add('email', EmailType::class,[
-                'label' => 'E-mail:'
+                'label' => 'E-mail'
             ])
             ->add('message', TextareaType::class,[
-                'label' => 'Üzenet:'
+                'label' => 'Üzenet'
             ])
-            ->add('Submit', SubmitType::class,[
+            ->add('submit', SubmitType::class,[
                 'label' => 'Küldés'
             ])
         ;

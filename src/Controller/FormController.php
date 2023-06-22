@@ -22,18 +22,18 @@ class FormController extends AbstractController
 
         $form->handleRequest($request);
 
+        $isSent = false;
+
         if ($form->isSubmitted() && $form->isValid())
         {
             $entityManager->persist($contact);
             $entityManager->flush();
-
-            return new Response("Köszönjük szépen a kérdésedet.
-                            Válaszunkkal hamarosan keresünk a megadott e-mail címen.");
-
+            $isSent = true;
         }
 
         return new Response($twig->render('form/show.html.twig',[
-            'contact_form' => $form->createView()
+            'contact_form' => $form->createView(),
+            'is_sent' => $isSent
         ]));
     }
 }
