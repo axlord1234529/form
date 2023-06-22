@@ -31,11 +31,6 @@ class FormController extends AbstractController
                             Válaszunkkal hamarosan keresünk a megadott e-mail címen.");
 
         }
-        elseif ($form->isSubmitted() && !$form->isValid())
-        {
-            return new Response("Hiba! Kérjük töltsd ki az
-                            összes mezőt!");
-        }
 
         return new Response($twig->render('form/show.html.twig',[
             'contact_form' => $form->createView()
